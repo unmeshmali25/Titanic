@@ -82,4 +82,11 @@ titanic_df['Alone'] = titanic_df.SibSp + titanic_df.Parch
 titanic_df['Alone'].loc[titanic_df['Alone'] == 0] = 'Alone'
 titanic_df['Alone'].loc[titanic_df['Alone'] > 0] = 'With Family'
 
+# To see how many survived 
+titanic_df['Survivor'] = titanic_df.Survived.map({0:'no', 1:'yes'})
+sns.catplot('Survivor', data = titanic_df, kind = 'count')
 
+
+# to see linear realtionship between age and survival and then class
+sns.lmplot('Age', 'Survived', data = titanic_df)
+sns.lmplot('Age', 'Survived', data = titanic_df, hue = 'Pclass')
